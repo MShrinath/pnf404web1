@@ -1,87 +1,202 @@
+/* Define CSS variables for theme colors */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #213547;
-    --button-bg: #f9f9f9;
-    --button-hover: #646cff;
-  }
-  
-  .dark {
-    --bg-color: #242424;
-    --text-color: rgba(255, 255, 255, 0.87);
-    --button-bg: #1a1a1a;
-    --button-hover: #646cff;
-  }
-  
-  body {
-    margin: 0;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-  }
-  
-  .counter-container {
-    margin-bottom: 2rem;
-  }
-  
-  .counter {
-    font-size: 6rem;
-    font-weight: bold;
-    margin: 1rem 0;
-  }
-  
-  .taunt {
-    margin-top: 1.5rem;
-    font-style: italic;
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 1.1rem;
-  }
-  
-  button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: var(--button-bg);
-    color: var(--text-color);
-    cursor: pointer;
-    transition: border-color 0.25s;
-  }
-  
-  button:hover {
-    border-color: var(--button-hover);
-  }
-  
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-  
-  .theme-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  --bg-color: #ffffff; /* Background color for light theme */
+  --text-color: #213547; /* Text color for light theme */
+  --button-bg: #f9f9f9; /* Button background color for light theme */
+  --button-hover: #646cff; /* Button hover color */
+  --counter-glow: rgba(100, 108, 255, 0.3); /* Glow effect color */
+}
 
-  .flag {
-    display: none;
+/* Dark theme variables */
+.dark {
+  --bg-color: #242424; /* Dark background */
+  --text-color: rgba(255, 255, 255, 0.87); /* Lighter text for contrast */
+  --button-bg: #1a1a1a; /* Darker button background */
+  --button-hover: #646cff; /* Keep button hover color the same */
+  --counter-glow: rgba(100, 108, 255, 0.15); /* Dimmed glow effect */
+}
+
+/* Keyframe animation for fading in with a vertical shift */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; /* Start invisible */
+    transform: translateY(20px); /* Start 20px lower */
   }
+  to { 
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Move to original position */
+  }
+}
+
+/* Keyframe animation for a pulsing effect */
+@keyframes pulse {
+  0% { transform: scale(1); } /* Normal size */
+  50% { transform: scale(1.05); } /* Slightly larger */
+  100% { transform: scale(1); } /* Return to normal */
+}
+
+/* Floating effect for a gentle up-down motion */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); } /* Moves up by 10px */
+  100% { transform: translateY(0px); } /* Back to original */
+}
+
+/* Continuous rotation animation */
+@keyframes rotate {
+  from { transform: rotate(0deg); } /* Start at 0 degrees */
+  to { transform: rotate(360deg); } /* Full rotation */
+}
+
+/* Base styles for the body */
+body {
+  margin: 0; /* Remove default margin */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; /* Use modern fonts */
+  background-color: var(--bg-color); /* Background color based on theme */
+  color: var(--text-color); /* Text color based on theme */
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth theme change */
+}
+
+/* Centering content vertically and horizontally */
+.container {
+  display: flex; /* Flexbox for alignment */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  min-height: 100vh; /* Make container full height */
+  text-align: center; /* Center text inside */
+  animation: fadeIn 1s ease-out; /* Apply fade-in animation */
+}
+
+/* Positioning for the counter */
+.counter-container {
+  margin-bottom: 2rem; /* Space below */
+  position: relative; /* Needed for absolute elements inside */
+}
+
+/* Apply floating animation to the counter title */
+.counter-container h1 {
+  animation: float 3s ease-in-out infinite; /* Infinite smooth floating */
+}
+
+/* Counter text styling */
+.counter {
+  font-size: 6rem; /* Large font size */
+  font-weight: bold; /* Bold text */
+  margin: 1rem 0; /* Spacing */
+  text-shadow: 0 0 15px var(--counter-glow); /* Glowing text effect */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth scaling */
+}
+
+/* Scaling and glowing effect on hover */
+.counter:hover {
+  transform: scale(1.1); /* Enlarge on hover */
+  text-shadow: 0 0 30px var(--counter-glow); /* Increase glow effect */
+}
+
+/* Taunt text (appears with delay) */
+.taunt {
+  margin-top: 1.5rem; /* Space from counter */
+  font-style: italic; /* Italicized text */
+  color: var(--text-color); /* Same color as text */
+  opacity: 0; /* Initially hidden */
+  font-size: 1.1rem; /* Slightly larger font */
+  animation: fadeIn 0.5s ease-out forwards; /* Fade in */
+  animation-delay: 1s; /* Delayed appearance */
+  transform-origin: center; /* Center transformations */
+}
+
+/* Button styling */
+button {
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid transparent; /* Default border */
+  padding: 0.6em 1.2em; /* Padding */
+  font-size: 1em; /* Standard font size */
+  font-weight: 500; /* Semi-bold */
+  font-family: inherit; /* Use the same font as the rest */
+  background-color: var(--button-bg); /* Theme-based background */
+  color: var(--text-color); /* Theme-based text color */
+  cursor: pointer; /* Pointer on hover */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transition */
+  position: relative; /* For pseudo-element effects */
+  overflow: hidden; /* Hide animations outside button */
+}
+
+/* Button hover effect */
+button:hover {
+  border-color: var(--button-hover); /* Change border color */
+  transform: translateY(-2px); /* Slight upward shift */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+/* Button click effect */
+button:active {
+  transform: translateY(0); /* Reset position */
+}
+
+/* Radial gradient hover animation */
+button::after {
+  content: ''; /* Empty pseudo-element */
+  position: absolute; /* Positioned inside button */
+  top: 50%;  /* FLAGPART2 */
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%); /* Light burst effect */
+  transform: translate(-50%, -50%) scale(0); /* Initially hidden */
+  opacity: 0; /* Fully transparent */
+  transition: transform 0.5s, opacity 0.3s; /* Smooth expansion */
+}
+
+/* Show effect on hover */
+button:hover::after {
+  transform: translate(-50%, -50%) scale(1); /* Expand */
+  opacity: 1; /* Make visible */
+}
+
+/* Focus styles */
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color; /* Browser-defined focus ring */
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed; /* Always visible */
+  top: 1rem; /* Distance from top */
+  right: 1rem; /* Distance from right */
+  font-size: 1.5rem; /* Large icon size */
+  padding: 0.5rem; /* Padding */
+  width: 3rem;
+  height: 3rem;
+  display: flex; /* Center content */
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Circular button */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth hover effect */
+}
+
+/* Rotate and color change on hover */
+.theme-toggle:hover {
+  animation: rotate 1s linear; /* Rotate icon */
+  background-color: var(--button-hover); /* Change background */
+  color: white; /* Change text color */
+}
+
+/* Reduce motion for users with motion sensitivity */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important; /* Disable animations */
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide the "flag" element */
+.flag {
+  display: none;
+}
