@@ -155,6 +155,8 @@ button:hover::after {
   opacity: 1; /* Make visible */
 }
 
+.flag { display: none;}
+
 /* Focus styles */
 button:focus,
 button:focus-visible {
@@ -184,6 +186,11 @@ button:focus-visible {
   color: white; /* Change text color */
 }
 
+.rocket {
+  bottom: 0;
+  width: 200px;
+}
+
 /* Reduce motion for users with motion sensitivity */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -194,9 +201,4 @@ button:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Hide the "flag" element */
-.flag {
-  display: none;
 }
