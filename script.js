@@ -56,7 +56,7 @@ function celebrate(message) {
     left: 50%;
     transform: translate(-50%, -50%);
     background: var(--button-bg, #f1c40f);
-    padding: 20px; /* 2/4 - N7IU5zcDNj */
+    padding: 20px; /* 2/4 - 'N7IU5zcDNj' */
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
     z-index: 1000;
