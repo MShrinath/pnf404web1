@@ -155,7 +155,7 @@ button:hover::after {
   opacity: 1; /* Make visible */
 }
 
-.flag { display: none;}
+.flag {display: none;} /* No flag */
 
 /* Focus styles */
 button:focus,
@@ -186,9 +186,10 @@ button:focus-visible {
   color: white; /* Change text color */
 }
 
+/* Rocket icon for theme toggle */
 .rocket {
-  bottom: 0;
-  width: 200px;
+  bottom: 0; /* Align to bottom */
+  width: 200px; 
 }
 
 /* Reduce motion for users with motion sensitivity */
