@@ -139,7 +139,7 @@ button:active {
 button::after {
   content: ''; /* Empty pseudo-element */
   position: absolute; /* Positioned inside button */
-  top: 50%;  /* FLAG 1/4 - Q3liZXJTQU */
+  top: 50%;  /* 1/4 - Q3liZXJTQU */
   left: 50%;
   width: 150%;
   height: 150%;
@@ -155,7 +155,7 @@ button:hover::after {
   opacity: 1; /* Make visible */
 }
 
-.flag {display: none;} /* No flag */
+.launch {display: none;} /* cant launch lmao */
 
 /* Focus styles */
 button:focus,
