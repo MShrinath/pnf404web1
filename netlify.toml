@@ -3,5 +3,6 @@
   [headers.values]
     X-Flag-Launch = "3/4 - 'VF9lTGVtM2'"
     Cache-Control = "no-cache, no-store, must-revalidate"
+    Set-Cookie = "CyberSAC={G1MM3_C00K13S_N0W}; Path=/; Secure; HttpOnly; SameSite=Strict"
     Pragma = "no-cache"
     Expires = "0"
